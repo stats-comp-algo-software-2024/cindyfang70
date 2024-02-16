@@ -35,7 +35,6 @@ find.mle.bfgs <- function(design, outcome, tol=1e-6){
     while (lhs > rhs) {
 
       step_size <- rho_backtracking * step_size
-      # update
       lhs <- loglik.linear(design, outcome, betas + (step_size * search_direction))
       rhs <- loglik + c * step_size %*% t(grad) %*% search_direction
 

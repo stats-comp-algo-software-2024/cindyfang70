@@ -11,10 +11,8 @@ hiper_glm <- function(design, outcome, model, options){
 
   if (model=="linear"){
     if(missing(options)){
-      # assume pseudoinverse as default
       betas_hat <- find.mle.pseudoinv(design, outcome)
     }else if (options$mle_solver=="BFGS"){
-      # do bfgs
       betas_hat <-find.mle.bfgs(design, outcome)
     }
 
