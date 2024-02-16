@@ -11,10 +11,3 @@ grad.linear <- function(design, outcome, betas){
 
 }
 
-
-gaussian_logp <- function(X, x, betas) {
-
-  mat <- x - (X%*%betas)
-  logp <- - .5 * t(mat) %*% mat
-  return(logp)
-}
