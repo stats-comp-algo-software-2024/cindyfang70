@@ -1,15 +1,20 @@
 loglik.linear <- function(design, outcome, betas){
-  loglik <- 0.5*t(outcome - design %*% betas) %*% (outcome - design %*% betas)
+
+  mat <- outcome - design %*% betas
+  loglik <- 0.5*t(mat) %*% mat
   return(loglik)
 }
 
 grad.linear <- function(design, outcome, betas){
   grad <- -t(design) %*% (outcome - design %*% betas)
-  return(grad)
+  return(grad) # test if this is equal to the centred difference approx
+
 }
 
 
 gaussian_logp <- function(X, x, betas) {
-  logp <- - .5 * t(x - (X%*%betas)) %*% (x - (X%*%betas))
+
+  mat <- x - (X%*%betas)
+  logp <- - .5 * t(mat) %*% mat
   return(logp)
 }

@@ -4,21 +4,15 @@ test_that("multiplication works", {
 
 
 test_that("numerical gradient and analytical gradient are similar" , {
-  set.seed(410)
-  n_param <- 4
-  X <- matrix(rnorm(2 * n_param^2), nrow = 2 * n_param, ncol = n_param)
 
-  x <- c(3, 1, 4, 1)
+  data <- simulate_data(n_obs=4, n_pred=4, model = 'linear', seed = 1918)
+  design <- data$design; outcome <- data$outcome; betas <- data$coef_true
 
-  hglm <- hiper_glm(
-    X, x, model = 'linear', option = list(mle_solver = 'BFGS')
-  )
 
-  betas <- coef(hglm)
-
-  my_grad <- grad.linear(X, x, betas)
-  numerical_grad <- approxgrad.linear(function(x) gaussian_logp(X, x, betas), x)
-
+  my_grad <- grad.linear(design, outcome, betas)
+  numerical_grad <- approxgrad.linear(function(x){loglik.linear(design, outcome, x)}, betas)
+  print(my_grad)
+  print(numerical_grad)
   expect_true(are_all_close(my_grad, numerical_grad))
 })
 
