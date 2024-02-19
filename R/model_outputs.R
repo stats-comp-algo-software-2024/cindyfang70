@@ -15,7 +15,7 @@ predict.hglm <- function(hglm){
 #' @return a warning
 #' @export
 coef.hglm <- function(hglm){
-  warning("This is a placeholder until the function is implemented")
+  return(hglm$coefficients)
 }
 
 #' cov.hglm
