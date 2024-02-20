@@ -1,7 +1,7 @@
 loglik.linear <- function(design, outcome, betas){
 
-  mat <- outcome - design %*% betas
-  loglik <- 0.5*t(mat) %*% mat
+  residuals <- outcome - design %*% betas
+  loglik <- 0.5*t(residuals) %*% residuals
   return(loglik)
 }
 
