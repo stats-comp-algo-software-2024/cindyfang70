@@ -8,3 +8,13 @@ grad.logit <- function(design, outcome, betas){
   probs <- exp(xbeta)/(1 + exp(xbeta))
   grad <- t(design) %*% (outcome - probs)
 }
+
+hessian.logit <- function(design, outcome, betas){
+  xbeta <- design %*% betas
+  probs <- as.vector(exp(xbeta)/(1 + exp(xbeta)))
+
+  W <- diag(probs)
+
+  hess <- t(design) %*% W %*% design
+
+}
