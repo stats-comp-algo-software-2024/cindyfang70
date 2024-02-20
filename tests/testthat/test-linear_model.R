@@ -1,8 +1,3 @@
-test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
-})
-
-
 test_that("numerical gradient and analytical gradient are similar" , {
 
   data <- simulate_data(n_obs=4, n_pred=4, model = 'linear', seed = 1918)

@@ -14,11 +14,11 @@ hiper_glm <- function(design, outcome, model, options){
   if (model == "linear"){
     if (!(options$mle_solver %in% solver_options)){
       warning("Invalid MLE solver option, defaulting to BFGS")
-      betas_hat <-find.mle.bfgs(design, outcome)
+      betas_hat <-find.mle.bfgs(design=design, outcome=outcome, func=loglik.linear, grad=grad.linear)
     }else if (options$mle == "pseudoinverse"){
       betas_hat <- find.mle.pseudoinv(design, outcome)
     }else if (options$mle == "BFGS"){
-      betas_hat <-find.mle.bfgs(design, outcome)
+      betas_hat <-find.mle.bfgs(design=design, outcome=outcome, func=loglik.linear, grad=grad.linear)
     }
 
   }
