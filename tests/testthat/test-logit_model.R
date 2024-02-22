@@ -7,7 +7,5 @@ test_that("numerical gradient and analytical gradient are similar" , {
   my_grad <- grad.logit(design, outcome, betas)
 
   numerical_grad <- approxgrad.linear(function(x){loglik.logit(design, outcome, x)}, betas)
-  print(my_grad)
-  print(numerical_grad)
   expect_true(are_all_close(my_grad, numerical_grad))
 })
